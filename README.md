@@ -3,6 +3,64 @@
 ## About
 Chrome extension designed to calculate tournament top cuts on the [Limitless TCG](https://play.limitlesstcg.com/tournament) platform.
 
+## How to Install
+
+<details>
+<summary>Chrome</summary>
+
+1. Download the extension:
+   - Clone this repository or download as ZIP
+   - Extract files if needed
+
+2. Load in Chrome:
+   - Open Chrome and go to `chrome://extensions/`
+   - Enable "Developer mode" in the top right
+   - Click "Load unpacked"
+   - Select the extracted extension folder
+</details>
+
+<details>
+<summary>Microsoft Edge</summary>
+
+1. Download the extension:
+   - Clone this repository or download as ZIP
+   - Extract files if needed
+
+2. Load in Edge:
+   - Open Edge and go to `edge://extensions/`
+   - Enable "Developer mode" in the left sidebar
+   - Click "Load unpacked"
+   - Select the extracted extension folder
+</details>
+
+<details>
+<summary>Firefox</summary>
+
+1. Download the extension:
+   - Clone this repository or download as ZIP
+   - Extract files if needed
+
+2. Load in Firefox:
+   - Open Firefox and go to `about:debugging`
+   - Click "This Firefox" in the left sidebar
+   - Click "Load Temporary Add-on"
+   - Select any file from the extension folder
+</details>
+
+<details>
+<summary>Opera</summary>
+
+1. Download the extension:
+   - Clone this repository or download as ZIP
+   - Extract files if needed
+
+2. Load in Opera:
+   - Open Opera and go to `opera://extensions`
+   - Enable "Developer mode" in the top right
+   - Click "Load unpacked"
+   - Select the extracted extension folder
+</details>
+
 ## How to Use
 1. Open a tournament link on Limitless TCG 
    - The extension will use this page to get the total number of players
@@ -17,16 +75,22 @@ Chrome extension designed to calculate tournament top cuts on the [Limitless TCG
 
 The extension will allow customizing tournament rules through the settings page:
 
-1. **Access Settings**
-   - Click the settings button (⚙️) on the extension
-   - A new settings page will open
+<details>
+<summary>Access Settings</summary>
 
-2. **Planned Features**
-   - Edit existing rules
-   - Add new rules
-   - Remove rules
-   - Save changes locally
-   - Restore default settings
+- Click the settings button (⚙️) on the extension
+- A new settings page will open
+</details>
+
+<details>
+<summary>Planned Features</summary>
+
+- Edit existing rules
+- Add new rules
+- Remove rules
+- Save changes locally
+- Restore default settings
+</details>
 
 ## Default Rules
 | Players | Swiss Rounds | Top Cut |
@@ -41,8 +105,6 @@ The extension will allow customizing tournament rules through the settings page:
 | 513-1024| 9           | Top 32* |
 | 1025-2048| 10         | Top 32* |
 | 2049+   | 10          | Top 64* |
-
-*Day 2 Tournament
 
 ## Results
 - Calculator shows values based on default rules
@@ -59,3 +121,4 @@ The following features are planned:
 - Complete settings customization
 - Local storage for custom rules
 - Rule set management for different tournament types
+- Language settings (English/Portuguese)
