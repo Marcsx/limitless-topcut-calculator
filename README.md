@@ -68,7 +68,8 @@ Chrome extension designed to calculate tournament top cuts on the [Limitless TCG
 2. The extension automatically:
    - Gets the total number of players
    - Calculates Swiss rounds based on player count
-   - Determines top cut size
+   - Determines top cut size and percentage
+   - Shows qualification chances for each record
 
 ## Settings
 ⚠️ **Note: Settings page is currently under development and not functional yet.**
@@ -107,18 +108,23 @@ The extension will allow customizing tournament rules through the settings page:
 | 2049+   | 10          | Top 64* |
 
 ## Results
-- Calculator shows values based on default rules
+- Calculator shows:
+  - Top cut size with percentage
+  - Required records with qualification chances
 - Values are automatically detected from the tournament page
 
 ## Important Notes
 ⚠️ This calculator:
 - Considers all registered players, including drops
 - Currently uses fixed default rules (settings customization coming soon)
-- Uses Material Design with dark theme
+- Automatically adapts to browser language settings
 
 ## Future Updates
 The following features are planned:
 - Complete settings customization
 - Local storage for custom rules
-- Rule set management for different tournament types
-- Language settings (English/Portuguese)
+
+## Features
+- Automatic language detection (English/Portuguese)
+- Calculations based on tournament data
+- Material Design UI with dark theme

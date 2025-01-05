@@ -1,5 +1,6 @@
 class TopCutCalculator {
   constructor() {
+    this.i18n = new I18n();
     this.defaultTopCutRules = [
       { maxPlayers: 8, rounds: 3, topCut: 0 },
       { maxPlayers: 16, rounds: 4, topCut: 4 },
@@ -28,22 +29,22 @@ class TopCutCalculator {
     modal.id = 'topcut-modal';
     modal.innerHTML = `
       <div class="modal-header">
-        Calculadora de Top Cut
+        ${this.i18n.t('title')}
         <button id="settings-button" class="settings-icon">⚙️</button>
       </div>
       <div class="input-group">
-        <label>Número de Jogadores</label>
-        <input type="number" id="players-input" placeholder="Auto-detectar">
+        <label>${this.i18n.t('players')}</label>
+        <input type="number" id="players-input" placeholder="Auto-detect">
       </div>
       <div class="input-group">
-        <label>Número de Rodadas</label>
-        <input type="number" id="rounds-input" placeholder="Auto-detectar">
+        <label>${this.i18n.t('rounds')}</label>
+        <input type="number" id="rounds-input" placeholder="Auto-detect">
       </div>
       <div class="input-group">
-        <label>Top Cut</label>
+        <label>${this.i18n.t('topCut')}</label>
         <select id="topcut-input">
-          <option value="auto">Auto (Baseado no número de jogadores)</option>
-          <option value="0">Sem Top Cut</option>
+          <option value="auto">Auto</option>
+          <option value="0">${this.i18n.t('noTopCut')}</option>
           <option value="4">Top 4</option>
           <option value="8">Top 8</option>
           <option value="16">Top 16</option>
@@ -52,7 +53,7 @@ class TopCutCalculator {
           <option value="128">Top 128</option>
         </select>
       </div>
-      <button class="button" id="calculate-button">Calcular</button>
+      <button class="button" id="calculate-button">${this.i18n.t('calculate')}</button>
       <div class="results" id="results"></div>
     `;
     document.body.appendChild(modal);
@@ -133,8 +134,8 @@ class TopCutCalculator {
 
     document.getElementById('results').innerHTML = `
       <div style="color: rgba(255, 255, 255, 0.87)">
-        <div style="margin-bottom: 2px">Top Cut: ${topCutSize === 0 ? 'Sem Top Cut' : `Top ${topCutSize} (${topCutPercentage}%)`}</div>
-        <div style="white-space: nowrap">${results}</div>
+        <div style="margin-bottom: 2px">${this.i18n.t('topCut')}: ${topCutSize === 0 ? this.i18n.t('noTopCut') : `Top ${topCutSize} (${topCutPercentage}%)`}</div>
+        <div style="white-space: nowrap">${this.i18n.t('records')}: ${results}</div>
       </div>
     `;
   }
@@ -271,10 +272,10 @@ class TopCutCalculator {
     // Pega os 3 melhores recordes
     const topRecords = possibleRecords.slice(0, 3);
     
-    // Nova formatação da string de retorno
-    return `Recordes:\n${topRecords
+    // Remove a palavra "Recordes:" da string de retorno, já que será adicionada no template
+    return topRecords
         .map(r => `${r.record} (${r.percentage}%)`)
-        .join(' | ')}`;
+        .join(' | ');
   }
 
   calculatePossiblePlayers(rounds, wins) {
