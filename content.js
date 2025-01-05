@@ -126,12 +126,15 @@ class TopCutCalculator {
 
     const results = this.calculatePossibleRecords(roundsCount, topCutSize);
     
+    // Calcula a porcentagem do top cut
+    const topCutPercentage = topCutSize > 0 
+      ? Math.round((topCutSize/playersCount) * 100) 
+      : 0;
+
     document.getElementById('results').innerHTML = `
       <div style="color: rgba(255, 255, 255, 0.87)">
-        <div>Jogadores: ${playersCount}</div>
-        <div>Rodadas: ${roundsCount}</div>
-        <div>Top Cut: ${topCutSize === 0 ? 'Sem Top Cut' : 'Top ' + topCutSize}</div>
-        <div>Recordes necessários: ${results}</div>
+        <div style="margin-bottom: 2px">Top Cut: ${topCutSize === 0 ? 'Sem Top Cut' : `Top ${topCutSize} (${topCutPercentage}%)`}</div>
+        <div style="white-space: nowrap">${results}</div>
       </div>
     `;
   }
@@ -237,9 +240,55 @@ class TopCutCalculator {
   }
 
   calculatePossibleRecords(rounds, topCutSize) {
-    // Implementar lógica para calcular os recordes necessários
-    // Esta é uma implementação simplificada
-    return `${rounds}-0, ${rounds-1}-1`;
+    // Array para armazenar todos os possíveis recordes com suas porcentagens
+    const possibleRecords = [];
+    let remainingSpots = topCutSize;
+    
+    // Calcula as possibilidades de vitórias necessárias (do melhor ao pior record)
+    for (let wins = rounds; wins >= 0; wins--) {
+        const losses = rounds - wins;
+        // Calcula quantos jogadores teoricamente podem alcançar esse record
+        const playersWithThisRecord = this.calculatePossiblePlayers(rounds, wins);
+        
+        if (playersWithThisRecord > 0) {
+            // Se há vagas suficientes para todos com este record, 100% passam
+            // Caso contrário, calcula a % que passará
+            const chanceToQualify = remainingSpots >= playersWithThisRecord 
+                ? 100 
+                : Math.round((remainingSpots / playersWithThisRecord) * 100);
+
+            if (chanceToQualify > 0) {
+                possibleRecords.push({
+                    record: `${wins}-${losses}`,
+                    percentage: chanceToQualify
+                });
+            }
+
+            remainingSpots = Math.max(0, remainingSpots - playersWithThisRecord);
+        }
+    }
+    
+    // Pega os 3 melhores recordes
+    const topRecords = possibleRecords.slice(0, 3);
+    
+    // Nova formatação da string de retorno
+    return `Recordes:\n${topRecords
+        .map(r => `${r.record} (${r.percentage}%)`)
+        .join(' | ')}`;
+  }
+
+  calculatePossiblePlayers(rounds, wins) {
+    // Usando o coeficiente binomial para calcular possíveis combinações
+    return this.binomialCoefficient(rounds, wins);
+  }
+
+  binomialCoefficient(n, k) {
+    let result = 1;
+    for (let i = 1; i <= k; i++) {
+        result *= (n + 1 - i);
+        result /= i;
+    }
+    return result;
   }
 
   determineRoundsCount(players) {
