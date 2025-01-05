@@ -117,3 +117,22 @@
 #topcut-modal select option {
   background-color: var(--surface-color);
 } 
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.settings-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2em;
+  padding: 4px;
+  margin-left: 8px;
+}
+
+.settings-icon:hover {
+  opacity: 0.8;
+}

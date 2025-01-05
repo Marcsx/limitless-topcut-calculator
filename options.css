@@ -1,0 +1,116 @@
+:root {
+    --background-color: #1e1e1e;
+    --text-color: #ffffff;
+    --border-color: #333333;
+    --accent-color: #2196f3;
+    --hover-color: #1976d2;
+    --error-color: #f44336;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: system-ui, -apple-system, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1, h2 {
+    margin-bottom: 20px;
+}
+
+.rules-container {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.rule-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    margin-bottom: 12px;
+}
+
+.rule-inputs {
+    display: flex;
+    flex: 1;
+    gap: 16px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.input-group label {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.input-group input {
+    width: 100px;
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+.button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.button.primary {
+    background: var(--accent-color);
+    color: white;
+}
+
+.button.primary:hover {
+    background: var(--hover-color);
+}
+
+.button.secondary {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+.button.secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+.delete-rule {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-color);
+    opacity: 0.7;
+    font-size: 18px;
+    padding: 4px;
+}
+
+.delete-rule:hover {
+    opacity: 1;
+} 

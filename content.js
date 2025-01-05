@@ -27,7 +27,10 @@ class TopCutCalculator {
     const modal = document.createElement('div');
     modal.id = 'topcut-modal';
     modal.innerHTML = `
-      <div class="modal-header">Calculadora de Top Cut</div>
+      <div class="modal-header">
+        Calculadora de Top Cut
+        <button id="settings-button" class="settings-icon">⚙️</button>
+      </div>
       <div class="input-group">
         <label>Número de Jogadores</label>
         <input type="number" id="players-input" placeholder="Auto-detectar">
@@ -82,6 +85,13 @@ class TopCutCalculator {
         const suggestedTopCut = this.determineTopCutSize(players);
         this.updateTopCutSuggestion(suggestedTopCut);
       }
+    });
+
+    // Adicionar listener para o botão de configurações
+    const settingsButton = document.getElementById('settings-button');
+    settingsButton.addEventListener('click', () => {
+        // Abre a página de opções da extensão
+        chrome.runtime.sendMessage({ action: 'openOptions' });
     });
   }
 
