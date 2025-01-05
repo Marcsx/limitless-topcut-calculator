@@ -42,8 +42,6 @@ The extension will allow customizing tournament rules through the settings page:
 | 1025-2048| 10         | Top 32* |
 | 2049+   | 10          | Top 64* |
 
-*Day 2 Tournament
-
 ## Results
 - Calculator shows values based on default rules
 - Values are automatically detected from the tournament page
@@ -59,3 +57,4 @@ The following features are planned:
 - Complete settings customization
 - Local storage for custom rules
 - Rule set management for different tournament types
+- Language settings (English/Portuguese)
