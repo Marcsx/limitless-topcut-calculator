@@ -34,20 +34,6 @@ Chrome extension designed to calculate tournament top cuts on the [Limitless TCG
 </details>
 
 <details>
-<summary>Firefox</summary>
-
-1. Download the extension:
-   - Clone this repository or download as ZIP
-   - Extract files if needed
-
-2. Load in Firefox:
-   - Open Firefox and go to `about:debugging`
-   - Click "This Firefox" in the left sidebar
-   - Click "Load Temporary Add-on"
-   - Select any file from the extension folder
-</details>
-
-<details>
 <summary>Opera</summary>
 
 1. Download the extension:
