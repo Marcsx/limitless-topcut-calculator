@@ -241,39 +241,41 @@ class TopCutCalculator {
   }
 
   calculatePossibleRecords(rounds, topCutSize) {
-    // Array para armazenar todos os possíveis recordes com suas porcentagens
     const possibleRecords = [];
+    const totalPlayers = parseInt(document.getElementById('players-input').value);
     let remainingSpots = topCutSize;
     
     // Calcula as possibilidades de vitórias necessárias (do melhor ao pior record)
     for (let wins = rounds; wins >= 0; wins--) {
         const losses = rounds - wins;
-        // Calcula quantos jogadores teoricamente podem alcançar esse record
-        const playersWithThisRecord = this.calculatePossiblePlayers(rounds, wins);
         
-        if (playersWithThisRecord > 0) {
-            // Se há vagas suficientes para todos com este record, 100% passam
-            // Caso contrário, calcula a % que passará
-            const chanceToQualify = remainingSpots >= playersWithThisRecord 
-                ? 100 
-                : Math.round((remainingSpots / playersWithThisRecord) * 100);
-
-            if (chanceToQualify > 0) {
+        // Calcula quantos jogadores teoricamente podem alcançar esse record
+        const playersWithThisRecord = Math.round(
+            totalPlayers * 
+            this.binomialCoefficient(rounds, wins) * 
+            Math.pow(0.5, rounds)
+        );
+        
+        if (remainingSpots > 0) {
+            // Calcula quantos jogadores com esse record passarão
+            const playersAdvancing = Math.min(remainingSpots, playersWithThisRecord);
+            
+            // Calcula a porcentagem de jogadores que passam com esse record
+            const percentageAdvancing = Math.round((playersAdvancing / playersWithThisRecord) * 100);
+            
+            if (percentageAdvancing > 0) {
                 possibleRecords.push({
                     record: `${wins}-${losses}`,
-                    percentage: chanceToQualify
+                    percentage: percentageAdvancing
                 });
+                
+                remainingSpots -= playersAdvancing;
             }
-
-            remainingSpots = Math.max(0, remainingSpots - playersWithThisRecord);
         }
     }
     
-    // Pega os 3 melhores recordes
-    const topRecords = possibleRecords.slice(0, 3);
-    
-    // Remove a palavra "Recordes:" da string de retorno, já que será adicionada no template
-    return topRecords
+    // Retorna apenas os records que têm chance real de classificação
+    return possibleRecords
         .map(r => `${r.record} (${r.percentage}%)`)
         .join(' | ');
   }
